@@ -1,0 +1,45 @@
+public class solution {
+    
+    public static void merge(int[]a,int[]b,int[]input){
+        int i=0;
+        int j=0;
+        int k=0;
+        while(i<a.length && j<b.length){
+            if(a[i]<=b[j]){
+                input[k]=a[i];
+                i++;k++;
+            }else{
+                input[k]=b[j];
+                j++;k++;
+            }
+        }
+        while(i<a.length){
+            input[k]=a[i];
+            i++;
+            k++;
+        }
+        while(j<b.length){
+            input[k]=b[j];
+            j++;
+            k++;
+        }
+    }
+
+	public static void mergeSort(int[] input){
+		if(input.length<=1){
+            return ;
+        }
+        int mid =input.length/2;
+        int a[] =new int[mid];
+        int b[]= new int[input.length-mid];
+		for(int i=0;i<mid;i++){
+            a[i]=input[i];
+        }
+        for(int i=mid;i<input.length;i++){
+            b[i-mid]=input[i];
+        }
+        mergeSort(a);
+        mergeSort(b);
+        merge(a,b,input);
+	}
+}
